@@ -1,0 +1,52 @@
+25 30
+Astrobiology MechanicalEngineering Plastics Chemisty AlienLanguages Geology SphericalHarmonics MachineLearning EnvironmentalScience Fermentation VirtualReality Medicine EvolutionaryBiology Electromagnetism EvolutionaryCompuation AsteroidMining PersonalizedMedacine ForceFields Exoskeletons Bioinstrumentation BiochemicalProcesses ArtificialLife Ceramics Oceanography ParticalPhysics Systematics Cryobiology SyntheticBiology Robotics Cybersecurity
+3
+Geology MachineLearning Cryobiology
+8
+Astrobiology Plastics Chemisty AlienLanguages SphericalHarmonics Medicine AsteroidMining ArtificialLife
+7
+Astrobiology Plastics Fermentation AsteroidMining Systematics Cryobiology SyntheticBiology
+4
+Geology MachineLearning VirtualReality ForceFields
+1
+Robotics
+4
+Astrobiology Chemisty EvolutionaryCompuation ParticalPhysics
+2
+Oceanography ParticalPhysics
+1
+Cybersecurity
+3
+EvolutionaryBiology PersonalizedMedacine BiochemicalProcesses
+2
+Plastics Exoskeletons
+0
+
+1
+Robotics
+5
+MechanicalEngineering EvolutionaryBiology ForceFields ArtificialLife Ceramics
+4
+Chemisty SphericalHarmonics VirtualReality Robotics
+4
+Chemisty MachineLearning VirtualReality Ceramics
+4
+Plastics Electromagnetism AsteroidMining Bioinstrumentation
+6
+Astrobiology SphericalHarmonics PersonalizedMedacine Bioinstrumentation Oceanography SyntheticBiology
+4
+MechanicalEngineering Ceramics Cryobiology Cybersecurity
+2
+ForceFields ParticalPhysics
+2
+AlienLanguages Medicine
+6
+AlienLanguages MachineLearning Exoskeletons ArtificialLife Oceanography Cryobiology
+1
+Geology
+5
+Geology EnvironmentalScience Medicine EvolutionaryBiology BiochemicalProcesses
+3
+AsteroidMining Bioinstrumentation Ceramics
+5
+Fermentation Medicine EvolutionaryCompuation PersonalizedMedacine ArtificialLife

@@ -1,0 +1,26 @@
+12 18
+QuantumInformation ImageRecognition Hydrogeology SoftwareEngineering EvolutionaryBiology GameTheory Systematics ArtificialIntelligence Metalurgy MetabolicEngineering Relativity Ecology Oceanography Astrobiology Medicine Genetics Philosophy QuantumPhysics
+6
+ImageRecognition SoftwareEngineering EvolutionaryBiology ArtificialIntelligence Medicine Philosophy
+5
+QuantumInformation Hydrogeology Metalurgy Relativity QuantumPhysics
+8
+QuantumInformation ArtificialIntelligence Metalurgy Ecology Astrobiology Medicine Genetics QuantumPhysics
+4
+Relativity Astrobiology Genetics QuantumPhysics
+7
+QuantumInformation Hydrogeology SoftwareEngineering EvolutionaryBiology Systematics Medicine Philosophy
+3
+Metalurgy Relativity Astrobiology
+6
+QuantumInformation EvolutionaryBiology GameTheory Systematics Ecology Oceanography
+8
+ImageRecognition SoftwareEngineering EvolutionaryBiology GameTheory Relativity Ecology Oceanography Philosophy
+6
+Hydrogeology Metalurgy MetabolicEngineering Ecology Genetics QuantumPhysics
+2
+QuantumInformation ArtificialIntelligence
+5
+SoftwareEngineering Systematics ArtificialIntelligence Relativity QuantumPhysics
+6
+ImageRecognition Hydrogeology Metalurgy MetabolicEngineering Medicine Philosophy

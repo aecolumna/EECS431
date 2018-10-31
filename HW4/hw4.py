@@ -8,8 +8,6 @@ from_iter = chain.from_iterable
 Find minimum covering set
 """
 
-Candidate = namedtuple("Candidate",['identifier','skills','numSkills','remove'])
-
 allSkillsArr = []
 
 lenMinCover = 0
@@ -25,7 +23,7 @@ for i in range(n):
     num = int(input())
     arr = input().split()
     allSkillsArr.extend(arr) # add to the tracker of all skills
-    candidatesArr[i] = Candidate(i ,set(arr), num, False)
+    candidatesArr[i] = set(arr)
 
 countDict = Counter(allSkillsArr)
 
@@ -37,9 +35,9 @@ newCandidatesArr = []
 for candidate in candidatesArr:
     flag = False
     for skill in uniqueSkills:
-        if skill in candidate.skills:
+        if skill in candidate:
             flag = True
-            skillsSet -= candidate.skills # remove skills possesed by dude whos definitely going
+            skillsSet -= candidate # remove skills possesed by dude whos definitely going
             lenMinCover += 1
             break
     if flag is False:
@@ -52,27 +50,13 @@ def Powerset(s):
 
 # sort by number of skills
 # Open to further optimization
-candidatesArr = sorted(candidatesArr, reverse=True, key=lambda x: x.numSkills)
-
-s = set()
+candidatesArr = sorted(candidatesArr, reverse=True, key=lambda x: len(x))
 
 for subset in Powerset(candidatesArr):
-    s.clear()
 
-    for candidate in subset:
-        s |= candidate.skills
+    s = set().union(*subset)
 
     if s >= skillsSet:
         lenMinCover += len(subset)
         print(lenMinCover)
         break
-
-
-
-
-
-
-
-
-
-
