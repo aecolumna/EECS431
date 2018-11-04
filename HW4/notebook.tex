@@ -1,0 +1,1219 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{HW4}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{HW 5}\label{hw-5}
+
+by Anjali Munasinghe, Jesse McClay, and Andrés Columna
+
+\subsubsection{Table of Contents}\label{table-of-contents}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Section \ref{problem-1}
+\item
+  Section \ref{problem-2}
+\item
+  Section \ref{problem-3}
+\end{enumerate}
+
+    \section{Problem 1}\label{problem-1}
+
+\section{MergeSort vs InsertionSort}\label{mergesort-vs-insertionsort}
+
+    \subsection{Hypothesis}\label{hypothesis}
+
+The CLRS textbook states that insertion sort is more efficient for small
+n, but that the exact value of n varies between n=7 and n=50 depending
+on implementation and the environment its run in. This might be counter
+intuitive at first glance, since InsertionSort is \(O(n^2)\) while
+Mergesort is \$O(n \log{n}) \$. But on second glance, it makes sense, as
+mergesort performs the same number of operations regardless of how
+partially sorted the array we're sorting is , or how large the array is.
+Whereas a factor in the time required by insertionsort time is the
+distance an element is from its final destination. So small arrays imply
+small distances pushing elements into their final index regardless of
+where an element originally is. This means the best-case time complexity
+for insertion sort is \(O(n)\) when we're sorting an already sorted
+array. And \(O(nk)\) in general, where k is the most out-of-place
+element. So if the largest element in an array we're trying to sort in
+increasing order is in index=n-1, this devolves into \(O(n^2)\)
+
+Despite CLRS' claims, I imagine the \(n < 7\) holds for the most
+efficient implementation of mergesort, which is harder to code (Our
+version of insertionsort can't be improved in python at least). The
+easier version of mergesort we're planning on using obviously still has
+the same asymptotic complexity as any other version of mergesort, but
+adds some gnarly coefficients on the linear terms that might overwhelm
+the \(n^2\) term for small n. This is due to copying of lists (i.e.
+mergesort(arr{[}:mid{]}) instead of just passing parameters i and mid
+and mid and j when splitting the left half and right half of the arrays
+in mergesort.
+
+So our guess is that insertionsort will be more efficient than mergesort
+for \(n < 60\). Mergesort will be more efficient for all \(n > 60\).
+
+    \subsection{Methods}\label{methods}
+
+    The version of python used is cPython 3.6.5 \textbar{}{[}GCC 4.2.1
+Compatible Clang 4.0.1 on darwin VM
+
+My computer is a macbook air w/ 8gb RAM.
+
+We used the timeit library from the python standard lib to time the
+functions. We use randint from the random library to create random
+arrays of variable length.
+
+We create ten random arrays for each length n, ranging from array len=1
+to len=300. Then we sum how long it takes each algorithm to sort the ten
+random arrays, and we divide it by ten to find the mean. To be clear,
+both algorithms sort the same permutation of a random array. The integer
+sizes used in the random arrays range from 1 to 1000.
+
+    \paragraph{InsertionSort implementation source:
+homemade}\label{insertionsort-implementation-source-homemade}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{k}{def} \PY{n+nf}{insertionSort}\PY{p}{(}\PY{n}{arr}\PY{p}{)}\PY{p}{:}
+            \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{arr}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                \PY{n}{j} \PY{o}{=} \PY{n}{i}
+                \PY{n}{val} \PY{o}{=} \PY{n}{arr}\PY{p}{[}\PY{n}{i}\PY{p}{]}
+                \PY{k}{while} \PY{n}{j} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0} \PY{o+ow}{and} \PY{n}{arr}\PY{p}{[}\PY{n}{j} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{n}{val}\PY{p}{:}
+                    \PY{n}{arr}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{=} \PY{n}{arr}\PY{p}{[}\PY{n}{j} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{]}
+                    \PY{n}{j} \PY{o}{\PYZhy{}}\PY{o}{=} \PY{l+m+mi}{1}
+                \PY{n}{arr}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{=} \PY{n}{val}   
+\end{Verbatim}
+
+
+    \paragraph{InsertionSort test for
+correctness}\label{insertionsort-test-for-correctness}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{k}{def} \PY{n+nf}{testInsertionSort}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            
+            \PY{k+kn}{from} \PY{n+nn}{random} \PY{k}{import} \PY{n}{randint}
+            \PY{k+kn}{from} \PY{n+nn}{copy} \PY{k}{import} \PY{n}{deepcopy}
+            
+            \PY{c+c1}{\PYZsh{} test for 100 random arrays of random length between 1 and 100}
+            \PY{k}{for} \PY{n}{\PYZus{}} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{:}
+                
+                \PY{n}{arr} \PY{o}{=} \PY{p}{[}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{)}\PY{p}{]}
+                
+                \PY{n}{copyArr} \PY{o}{=} \PY{n}{deepcopy}\PY{p}{(}\PY{n}{arr}\PY{p}{)}
+                \PY{n}{insertionSort}\PY{p}{(}\PY{n}{arr}\PY{p}{)}
+                
+                \PY{k}{assert}\PY{p}{(}\PY{n}{arr} \PY{o}{==} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{arr}\PY{p}{)}\PY{p}{)}
+                
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Tests Passed}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+                
+        \PY{n}{testInsertionSort}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Tests Passed
+
+    \end{Verbatim}
+
+    \paragraph{mergesort implementation, source: Andrés + merge from Python
+Heapq
+library}\label{mergesort-implementation-source-andruxe9s-merge-from-python-heapq-library}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{k+kn}{from} \PY{n+nn}{heapq} \PY{k}{import} \PY{n}{merge}
+         
+        \PY{k}{def} \PY{n+nf}{mergesort}\PY{p}{(}\PY{n}{arr}\PY{p}{)}\PY{p}{:}
+            \PY{n}{length} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{arr}\PY{p}{)}
+            
+            \PY{k}{if} \PY{n}{length} \PY{o}{\PYZlt{}} \PY{l+m+mi}{2}\PY{p}{:}
+                \PY{k}{return} \PY{n}{arr}
+         
+            \PY{n}{mid} \PY{o}{=} \PY{n}{length} \PY{o}{/}\PY{o}{/} \PY{l+m+mi}{2}
+            \PY{n}{lefthalf} \PY{o}{=} \PY{n}{mergesort}\PY{p}{(}\PY{n}{arr}\PY{p}{[}\PY{p}{:}\PY{n}{mid}\PY{p}{]}\PY{p}{)}
+            \PY{n}{righthalf} \PY{o}{=} \PY{n}{mergesort}\PY{p}{(}\PY{n}{arr}\PY{p}{[}\PY{n}{mid}\PY{p}{:}\PY{p}{]}\PY{p}{)}
+         
+            \PY{k}{return} \PY{n+nb}{list}\PY{p}{(}\PY{n}{merge}\PY{p}{(}\PY{n}{lefthalf}\PY{p}{,} \PY{n}{righthalf}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \paragraph{test mergesort for
+correctness}\label{test-mergesort-for-correctness}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{k}{def} \PY{n+nf}{testMergesort}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            
+            \PY{k+kn}{from} \PY{n+nn}{random} \PY{k}{import} \PY{n}{randint}
+            \PY{k+kn}{from} \PY{n+nn}{copy} \PY{k}{import} \PY{n}{deepcopy}
+            
+            \PY{c+c1}{\PYZsh{} test for 100 random arrays of random length between 1 and 100}
+            \PY{k}{for} \PY{n}{\PYZus{}} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{:}
+                
+                \PY{n}{arr} \PY{o}{=} \PY{p}{[}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{)}\PY{p}{]}
+                
+                \PY{n}{copyArr} \PY{o}{=} \PY{n}{deepcopy}\PY{p}{(}\PY{n}{arr}\PY{p}{)}
+                
+                \PY{k}{assert}\PY{p}{(}\PY{n}{mergesort}\PY{p}{(}\PY{n}{arr}\PY{p}{)} \PY{o}{==} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{arr}\PY{p}{)}\PY{p}{)}
+                
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Mergesort Tests Passed}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+                
+        \PY{n}{testMergesort}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Mergesort Tests Passed
+
+    \end{Verbatim}
+
+    \subsection{Time mergesort vs insertion
+sort}\label{time-mergesort-vs-insertion-sort}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{k+kn}{from} \PY{n+nn}{timeit} \PY{k}{import} \PY{n}{timeit}
+        \PY{k+kn}{from} \PY{n+nn}{random} \PY{k}{import} \PY{n}{randint}
+        \PY{k+kn}{from} \PY{n+nn}{copy} \PY{k}{import} \PY{n}{deepcopy}
+        
+        \PY{n}{mergesortTimesArr} \PY{o}{=} \PY{p}{[}\PY{p}{]} 
+        \PY{n}{insertTimesArr} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} time sorts from len(arr) == 1 to len(arr) == 100 }
+        \PY{k}{for} \PY{n}{arrlen} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{200}\PY{p}{)}\PY{p}{:}
+            
+            \PY{n}{mergeTimes}  \PY{o}{=} \PY{l+m+mi}{0}
+            \PY{n}{insertTimes} \PY{o}{=} \PY{l+m+mi}{0}
+            
+         
+            \PY{c+c1}{\PYZsh{} takes average of ten runs}
+            \PY{k}{for} \PY{n}{\PYZus{}} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{30}\PY{p}{)}\PY{p}{:}
+                \PY{n}{arr1} \PY{o}{=} \PY{p}{[}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{)} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{arrlen}\PY{p}{)}\PY{p}{]}
+                \PY{n}{arr2} \PY{o}{=} \PY{n}{deepcopy}\PY{p}{(}\PY{n}{arr1}\PY{p}{)}
+                
+                \PY{n}{mergeTimes}  \PY{o}{+}\PY{o}{=} \PY{n}{timeit}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mergesort(arr1)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}     \PY{n}{number}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n+nb}{globals}\PY{o}{=}\PY{n+nb}{globals}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+                \PY{n}{insertTimes} \PY{o}{+}\PY{o}{=} \PY{n}{timeit}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{insertionSort(arr2)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{number}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n+nb}{globals}\PY{o}{=}\PY{n+nb}{globals}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+                
+            \PY{n}{meanMergeTime} \PY{o}{=}     \PY{n}{mergeTimes}  \PY{o}{/} \PY{l+m+mf}{30.}
+            \PY{n}{meanInsertionTime} \PY{o}{=} \PY{n}{insertTimes} \PY{o}{/} \PY{l+m+mf}{30.}
+            
+            \PY{n}{mergesortTimesArr}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{meanMergeTime}\PY{p}{)}
+            \PY{n}{insertTimesArr}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{meanInsertionTime}\PY{p}{)}
+            
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{mergesortTimesArr}\PY{p}{,} \PY{n}{file}\PY{o}{=}\PY{n+nb}{open}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mergeData.txt}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{a}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{insertTimesArr}\PY{p}{,} \PY{n}{file}\PY{o}{=}\PY{n+nb}{open}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{insertData.txt}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{a}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \paragraph{Code for graphing in Mathematica
+11}\label{code-for-graphing-in-mathematica-11}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MergesortTimeData = }
+\NormalTok{  ToExpression@}
+   \FunctionTok{StringReplace}\NormalTok{[}
+    \FunctionTok{Import}\NormalTok{["/Users/andres/Desktop/EECS431/HW4/mergeData.txt"], \{"e" "*^", "[" -> "\{", "]" -> "\}"\}];}
+\NormalTok{InsertionTimeData = }
+\NormalTok{  ToExpression@}
+   \FunctionTok{StringReplace}\NormalTok{[}
+    \FunctionTok{Import}\NormalTok{["/Users/andres/Desktop/EECS431/HW4/insertData.txt"], \{"e" \textbackslash{}"*^", "[" -> "\{", "]" -> "\}"\}];}
+\FunctionTok{ListLinePlot}\NormalTok{[\{InsertionTimeData, MergesortTimeData\}, }
+\NormalTok{ PlotLegends -> \{"InsertionSort", "MergeSort"\}, }
+ \FunctionTok{AxesLabel}\NormalTok{ -> \{}\FunctionTok{HoldForm}\NormalTok{["Len(}\FunctionTok{x}\NormalTok{)"], }\FunctionTok{HoldForm}\NormalTok{["Seconds"]\}, }
+ \FunctionTok{PlotLabel}\NormalTok{ -> }\FunctionTok{HoldForm}\NormalTok{["InsertionSort vs MergeSort"], }
+ \FunctionTok{LabelStyle}\NormalTok{ -> \{}\DecValTok{14}\NormalTok{, }\FunctionTok{GrayLevel}\NormalTok{[}\DecValTok{0}\NormalTok{]\}]}
+\end{Highlighting}
+\end{Shaded}
+
+    \subsection{Results}\label{results}
+
+the graph below indicates that mergesort becomes as fast as
+insertionsort around \(n=95\) and clearly overtakes it at around \$
+n=130 \$
+
+For \(n < 90\), insertionsort is consistently faster than mergesort by
+tens of microseconds. For \(n > 150\), the \(n^2\) time complexity of
+insertion sort becomes apparent. And the \(n \log{n}\) time complexity
+of mergsort is noticeably faster.
+
+In our graph, The x-axis denotes the length of the array of integers
+(i.e. n). The y-axis denots the time it takes to sort the array in
+seconds. The data is discrete, so it should really be a scatter plot but
+lines were drawn in between points so as to make it easier to read when
+lines cross. We used Wolfram Mathematica to graph the data.
+
+    \begin{figure}
+\centering
+\includegraphics{https://cdn.pbrd.co/images/HKrGrqb.png}
+\caption{Image of Yaktocat}
+\end{figure}
+
+    \subsection{Conclusions + Discussion}\label{conclusions-discussion}
+
+    This is a second, clearer run of timing for n \textless{} 200.
+
+\begin{figure}
+\centering
+\includegraphics{https://cdn.pbrd.co/images/HKzrUct.png}
+\caption{second run}
+\end{figure}
+
+    Upon closer inspection, the precise value at which MergeSort overtakes
+InsertionSort is n=103. The values are in seconds. n equals the number
+of elements in the array
+
+\begin{figure}
+\centering
+\includegraphics{https://cdn.pbrd.co/images/HKA3raz.png}
+\caption{}
+\end{figure}
+
+    \paragraph{Using an in-place version of
+Mergesort}\label{using-an-in-place-version-of-mergesort}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}131}]:} \PY{c+c1}{\PYZsh{} using a different version in\PYZhy{}place version of mergesort}
+          
+          \PY{c+c1}{\PYZsh{} merge sort}
+          \PY{k}{def} \PY{n+nf}{mergeSort2}\PY{p}{(}\PY{n}{arr}\PY{p}{,} \PY{n}{first}\PY{p}{,} \PY{n}{last}\PY{p}{)}\PY{p}{:}
+              \PY{k}{if} \PY{n}{first} \PY{o}{\PYZlt{}} \PY{n}{last}\PY{p}{:}
+                      \PY{n}{middle} \PY{o}{=} \PY{p}{(}\PY{n}{first}\PY{o}{+}\PY{n}{last}\PY{p}{)}\PY{o}{/}\PY{o}{/}\PY{l+m+mi}{2}            
+                      \PY{n}{mergeSort2}\PY{p}{(}\PY{n}{arr}\PY{p}{,} \PY{n}{first}\PY{p}{,} \PY{n}{middle}\PY{p}{)}
+                      \PY{n}{mergeSort2}\PY{p}{(}\PY{n}{arr}\PY{p}{,} \PY{n}{middle}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{last}\PY{p}{)}
+                      \PY{n}{merge2}\PY{p}{(}\PY{n}{arr}\PY{p}{,} \PY{n}{first}\PY{p}{,} \PY{n}{middle}\PY{p}{,} \PY{n}{last}\PY{p}{)}
+          
+          \PY{k}{def} \PY{n+nf}{merge2}\PY{p}{(}\PY{n}{arr}\PY{p}{,} \PY{n}{first}\PY{p}{,} \PY{n}{middle}\PY{p}{,} \PY{n}{last}\PY{p}{)}\PY{p}{:}
+              \PY{n}{left} \PY{o}{=} \PY{n}{arr}\PY{p}{[}\PY{n}{first}\PY{p}{:} \PY{n}{middle} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{]}
+              \PY{n}{right} \PY{o}{=} \PY{n}{arr}\PY{p}{[}\PY{n}{middle}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{:}\PY{n}{last}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}
+              
+              \PY{n}{left}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{sys}\PY{o}{.}\PY{n}{maxsize}\PY{p}{)}
+              \PY{n}{right}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{sys}\PY{o}{.}\PY{n}{maxsize}\PY{p}{)}
+              
+              \PY{n}{i} \PY{o}{=} \PY{n}{j} \PY{o}{=} \PY{l+m+mi}{0}
+          
+              \PY{k}{for} \PY{n}{k} \PY{o+ow}{in} \PY{n+nb}{range} \PY{p}{(}\PY{n}{first}\PY{p}{,} \PY{n}{last}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}
+                  \PY{k}{if} \PY{n}{left}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n}{right}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{:}
+                      \PY{n}{arr}\PY{p}{[}\PY{n}{k}\PY{p}{]} \PY{o}{=} \PY{n}{left}\PY{p}{[}\PY{n}{i}\PY{p}{]}
+                      \PY{n}{i} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+                  \PY{k}{else}\PY{p}{:}
+                      \PY{n}{arr}\PY{p}{[}\PY{n}{k}\PY{p}{]} \PY{o}{=} \PY{n}{right}\PY{p}{[}\PY{n}{j}\PY{p}{]}
+                      \PY{n}{j} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+                      
+          \PY{k}{def} \PY{n+nf}{testMergeSort2}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+              
+              \PY{k+kn}{from} \PY{n+nn}{random} \PY{k}{import} \PY{n}{randint}
+              \PY{k+kn}{from} \PY{n+nn}{copy} \PY{k}{import} \PY{n}{deepcopy}
+              
+              \PY{c+c1}{\PYZsh{} test for 100 random arrays of random length between 1 and 100}
+              \PY{k}{for} \PY{n}{\PYZus{}} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{:}
+                  
+                  \PY{n}{arr} \PY{o}{=} \PY{p}{[}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{)}\PY{p}{]}
+                  
+                  \PY{n}{copyArr} \PY{o}{=} \PY{n}{deepcopy}\PY{p}{(}\PY{n}{arr}\PY{p}{)}
+                  \PY{n}{mergeSort2}\PY{p}{(}\PY{n}{arr}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{arr}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+                  
+                  \PY{k}{assert}\PY{p}{(}\PY{n}{arr} \PY{o}{==} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{arr}\PY{p}{)}\PY{p}{)}
+                  
+              \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Mergesort2 Tests Passed}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+                  
+          \PY{n}{testMergeSort2}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Mergesort2 Tests Passed
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}135}]:} \PY{k+kn}{from} \PY{n+nn}{timeit} \PY{k}{import} \PY{n}{timeit}
+          \PY{k+kn}{from} \PY{n+nn}{random} \PY{k}{import} \PY{n}{randint}
+          \PY{k+kn}{from} \PY{n+nn}{copy} \PY{k}{import} \PY{n}{deepcopy}
+          
+          \PY{n}{mergesortTimesArr} \PY{o}{=} \PY{p}{[}\PY{p}{]} 
+          \PY{n}{insertTimesArr} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          
+          \PY{c+c1}{\PYZsh{} time sorts from len(arr) == 1 to len(arr) == 100 }
+          \PY{k}{for} \PY{n}{arrlen} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}\PY{p}{:}
+              
+              \PY{n}{mergeTimes}  \PY{o}{=} \PY{l+m+mi}{0}
+              \PY{n}{insertTimes} \PY{o}{=} \PY{l+m+mi}{0}
+              
+           
+              \PY{c+c1}{\PYZsh{} takes average of ten runs}
+              \PY{k}{for} \PY{n}{\PYZus{}} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{30}\PY{p}{)}\PY{p}{:}
+                  \PY{n}{arr1} \PY{o}{=} \PY{p}{[}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{)} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{arrlen}\PY{p}{)}\PY{p}{]}
+                  \PY{n}{arr2} \PY{o}{=} \PY{n}{deepcopy}\PY{p}{(}\PY{n}{arr1}\PY{p}{)}
+                  
+                  \PY{n}{mergeTimes}  \PY{o}{+}\PY{o}{=} \PY{n}{timeit}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mergeSort2(arr1,0,len(arr1)\PYZhy{}1)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}     \PY{n}{number}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n+nb}{globals}\PY{o}{=}\PY{n+nb}{globals}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+                  \PY{n}{insertTimes} \PY{o}{+}\PY{o}{=} \PY{n}{timeit}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{insertionSort(arr2)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{number}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n+nb}{globals}\PY{o}{=}\PY{n+nb}{globals}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+                  
+              \PY{n}{meanMergeTime} \PY{o}{=}     \PY{n}{mergeTimes}  \PY{o}{/} \PY{l+m+mf}{30.}
+              \PY{n}{meanInsertionTime} \PY{o}{=} \PY{n}{insertTimes} \PY{o}{/} \PY{l+m+mf}{30.}
+              
+              \PY{n}{mergesortTimesArr}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{meanMergeTime}\PY{p}{)}
+              \PY{n}{insertTimesArr}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{meanInsertionTime}\PY{p}{)}
+              
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{mergesortTimesArr}\PY{p}{,} \PY{n}{file}\PY{o}{=}\PY{n+nb}{open}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mergeData.txt}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{a}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{insertTimesArr}\PY{p}{,} \PY{n}{file}\PY{o}{=}\PY{n+nb}{open}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{insertData.txt}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{a}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{figure}
+\centering
+\includegraphics{https://preview.ibb.co/bzrO7f/image.png}
+\caption{mahlink}
+\end{figure}
+
+For the in-place mergesort, mergesort surpasses insertionSort at n=50
+
+    \section{Conclusion}\label{conclusion}
+
+Under the conditions tested, our implementation of insertion sort
+produces a faster algorithm for n \textless{} 95, while mergesort is
+faster for n \textgreater{} 130. For n between 95 and 130 the two
+sorting algorithms are indistinguishable.
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\section{Problem 2}\label{problem-2}
+
+\subsection{Hybrid Sorting}\label{hybrid-sorting}
+
+    Hypothesis: Briefly describe what results you believe you will find. It
+is important to write your hypothesis before you start conducting
+experiments as a way of acknowledging your initial expectations. Note:
+you will not lose points for your hypothesis being incorrect; in fact
+getting a result different from your hypothesis will often be more
+exciting and more of a learning experience.
+
+Methods: Describe step-by-step the experiments that you conduct. Provide
+the source code that you use, and details about which compiler you use,
+how you compile it (e.g., optimization flags), and the range of inputs
+that you feed into your program. Your methods should accurately reflect
+how you actually generated your data such that, someone reading them can
+replicate your experiment. Results: Present the data that your
+experiments produced. In most cases this will be a graph (as described
+in each question below) and a brief explanation to make sure the reader
+understands the data in that graph.
+
+Discussion: Provide a brief discussion of your data. Did anything about
+it surprise you? Were there any unexpected challenges in collecting the
+data? This section is where you will answer specific questions posed in
+the problems below.
+
+Conclusions: Present a concise take-away for this experiment. For
+example, ``Under the conditions tested, data structure A produces a
+faster algorithm for n \textless{} 1000, while data structure B is
+faster for n \textgreater{} 1500. For n between 1000 and 1500 the two
+data structures are indistinguishable.''
+
+    \subsection{Hypothesis}\label{hypothesis}
+
+Given that our last experiment yielded that Mergesort surpasses
+InsertionSort's performance at \texttt{len(arr)=100}, I'll stick with
+that. I hypothesize that using insertionSort for all subarrays n
+\textless{} 100, and mergesort for all n \textgreater{}= 100 will yield
+the best performance.
+
+    \subsection{Methods}\label{methods}
+
+\subsubsection{InsertionSort and MergeSort from problem
+1}\label{insertionsort-and-mergesort-from-problem-1}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}140}]:} \PY{k+kn}{from} \PY{n+nn}{heapq} \PY{k}{import} \PY{n}{merge}
+           
+          \PY{k}{def} \PY{n+nf}{mergeSort}\PY{p}{(}\PY{n}{arr}\PY{p}{)}\PY{p}{:}
+              \PY{n}{length} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{arr}\PY{p}{)}
+              
+              \PY{k}{if} \PY{n}{length} \PY{o}{\PYZlt{}} \PY{l+m+mi}{2}\PY{p}{:}
+                  \PY{k}{return} \PY{n}{arr}
+           
+              \PY{n}{mid} \PY{o}{=} \PY{n}{length} \PY{o}{/}\PY{o}{/} \PY{l+m+mi}{2}
+              \PY{n}{lefthalf} \PY{o}{=} \PY{n}{mergesort}\PY{p}{(}\PY{n}{arr}\PY{p}{[}\PY{p}{:}\PY{n}{mid}\PY{p}{]}\PY{p}{)}
+              \PY{n}{righthalf} \PY{o}{=} \PY{n}{mergesort}\PY{p}{(}\PY{n}{arr}\PY{p}{[}\PY{n}{mid}\PY{p}{:}\PY{p}{]}\PY{p}{)}
+           
+              \PY{k}{return} \PY{n+nb}{list}\PY{p}{(}\PY{n}{merge}\PY{p}{(}\PY{n}{lefthalf}\PY{p}{,} \PY{n}{righthalf}\PY{p}{)}\PY{p}{)}
+          
+          \PY{k}{def} \PY{n+nf}{insertionSort}\PY{p}{(}\PY{n}{arr}\PY{p}{)}\PY{p}{:}
+              \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{arr}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                  \PY{n}{j} \PY{o}{=} \PY{n}{i}
+                  \PY{n}{val} \PY{o}{=} \PY{n}{arr}\PY{p}{[}\PY{n}{i}\PY{p}{]}
+                  \PY{k}{while} \PY{n}{j} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0} \PY{o+ow}{and} \PY{n}{arr}\PY{p}{[}\PY{n}{j} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{n}{val}\PY{p}{:}
+                      \PY{n}{arr}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{=} \PY{n}{arr}\PY{p}{[}\PY{n}{j} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{]}
+                      \PY{n}{j} \PY{o}{\PYZhy{}}\PY{o}{=} \PY{l+m+mi}{1}
+                  \PY{n}{arr}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{=} \PY{n}{val}  
+              \PY{k}{return} \PY{n}{arr}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}229}]:} \PY{k+kn}{from} \PY{n+nn}{heapq} \PY{k}{import} \PY{n}{merge}
+           
+          \PY{k}{def} \PY{n+nf}{hybridSort}\PY{p}{(}\PY{n}{arr}\PY{p}{,} \PY{n}{k}\PY{o}{=}\PY{l+m+mi}{103}\PY{p}{)}\PY{p}{:}
+              \PY{n}{length} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{arr}\PY{p}{)}
+              
+              \PY{k}{if} \PY{n}{length} \PY{o}{\PYZlt{}} \PY{n}{k}\PY{p}{:}
+                  \PY{k}{return} \PY{n}{insertionSort}\PY{p}{(}\PY{n}{arr}\PY{p}{)}
+              
+              \PY{k}{else}\PY{p}{:}
+          
+                  \PY{n}{mid} \PY{o}{=} \PY{n}{length} \PY{o}{/}\PY{o}{/} \PY{l+m+mi}{2}
+                  \PY{n}{lefthalf} \PY{o}{=} \PY{n}{hybridSort}\PY{p}{(}\PY{n}{arr}\PY{p}{[}\PY{p}{:}\PY{n}{mid}\PY{p}{]}\PY{p}{)}
+                  \PY{n}{righthalf} \PY{o}{=} \PY{n}{hybridSort}\PY{p}{(}\PY{n}{arr}\PY{p}{[}\PY{n}{mid}\PY{p}{:}\PY{p}{]}\PY{p}{)}
+                  \PY{k}{return} \PY{n+nb}{list}\PY{p}{(}\PY{n}{merge}\PY{p}{(}\PY{n}{lefthalf}\PY{p}{,} \PY{n}{righthalf}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}227}]:} \PY{o}{\PYZpc{}\PYZpc{}}\PY{k}{timeit} \PYZhy{}n1 \PYZhy{}r10 arr = deepcopy(original)
+          
+          hybridSort(arr)
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+3.34 ms ± 1.03 ms per loop (mean ± std. dev. of 10 runs, 1 loop each)
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}228}]:} \PY{o}{\PYZpc{}\PYZpc{}}\PY{k}{timeit} \PYZhy{}n1 \PYZhy{}r10 arr = deepcopy(original)
+          
+          mergeSort(arr)
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+5.8 ms ± 1.52 ms per loop (mean ± std. dev. of 10 runs, 1 loop each)
+
+    \end{Verbatim}
+
+    \subsection{Timing the sorts}\label{timing-the-sorts}
+
+I added a parameter k to the hybridsort function that determines the
+cutoff when insertionSort takes over in the mergesort routine. So that
+for all subarrays were sorting that are less than \texttt{len(k)},
+insertion sort will be used. I tested k=20,40,60,...,140. (intervals of
+20).
+
+After determining with a precision of +/- 20 what the best cutoff was, I
+varied the k parameter at intervals of 10, in multiple iterations of
+trial and error.
+
+The way I timed the different versions of HybridSort is for every array
+length, 30 (probably) different random integer arrays of \texttt{len(n)}
+are created. A deep copy of the same array is made for each algorithm to
+sort, since some algorithms sort in-place and we wanna avoid feeding an
+already sorted array to an algorithm to sort and give us a false
+impression of how fast it is. \texttt{Timeit} times how long it takes to
+sort those 30 algorithms, each only sorted once as to avoid cache
+optimizations that again, obfuscate actual performance. Then the average
+time is taken for an individual array length. We ultimately have an
+array of times, where the index of an element signifys an array length,
+and the value at the index denotes the average time it took the
+algorithm to sort those 30 random arrays.
+
+I used the Timeit module from python.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}280}]:} \PY{k+kn}{from} \PY{n+nn}{timeit} \PY{k}{import} \PY{n}{timeit}
+          \PY{k+kn}{from} \PY{n+nn}{random} \PY{k}{import} \PY{n}{randint}
+          \PY{k+kn}{from} \PY{n+nn}{copy} \PY{k}{import} \PY{n}{deepcopy}
+          
+          \PY{n}{arr20} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{n}{arr40} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{n}{arr60} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{n}{arr80} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{n}{arr100} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{n}{arr120} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{n}{arr140} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{n}{a160} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          
+          \PY{c+c1}{\PYZsh{} time sorts from len(arr) == 1 to len(arr) == 100 }
+          \PY{k}{for} \PY{n}{arrlen} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{60}\PY{p}{)}\PY{p}{:}
+              \PY{n}{t} \PY{o}{=} \PY{l+m+mi}{100}
+              \PY{n}{t20} \PY{o}{=} \PY{l+m+mi}{0}
+              \PY{n}{t40} \PY{o}{=} \PY{l+m+mi}{0}
+              \PY{n}{t60} \PY{o}{=} \PY{l+m+mi}{0}
+              \PY{n}{t80} \PY{o}{=} \PY{l+m+mi}{0}
+              \PY{n}{t100} \PY{o}{=} \PY{l+m+mi}{0}
+              \PY{n}{t120} \PY{o}{=} \PY{l+m+mi}{0}
+              \PY{n}{t140} \PY{o}{=} \PY{l+m+mi}{0}
+              
+              \PY{n}{runs} \PY{o}{=} \PY{l+m+mi}{1}
+              
+              \PY{k}{for} \PY{n}{\PYZus{}} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{t}\PY{p}{)}\PY{p}{:}
+              
+                  \PY{n}{a20} \PY{o}{=} \PY{p}{[}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{)} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{arrlen}\PY{p}{)}\PY{p}{]}
+                  \PY{n}{a40} \PY{o}{=} \PY{n}{deepcopy}\PY{p}{(}\PY{n}{a20}\PY{p}{)}
+                  \PY{n}{a60} \PY{o}{=} \PY{n}{deepcopy}\PY{p}{(}\PY{n}{a20}\PY{p}{)}
+                  \PY{n}{a80} \PY{o}{=} \PY{n}{deepcopy}\PY{p}{(}\PY{n}{a20}\PY{p}{)}
+                  \PY{n}{a100} \PY{o}{=} \PY{n}{deepcopy}\PY{p}{(}\PY{n}{a20}\PY{p}{)}
+                  \PY{n}{a120} \PY{o}{=} \PY{n}{deepcopy}\PY{p}{(}\PY{n}{a20}\PY{p}{)}
+                  \PY{n}{a140} \PY{o}{=} \PY{n}{deepcopy}\PY{p}{(}\PY{n}{a20}\PY{p}{)}
+                  \PY{n}{a160} \PY{o}{=} \PY{n}{deepcopy}\PY{p}{(}\PY{n}{a20}\PY{p}{)}
+          
+          
+                  \PY{n}{t100} \PY{o}{+}\PY{o}{=} \PY{n}{timeit}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hybridSort(a100, 25)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{number}\PY{o}{=}\PY{n}{runs}\PY{p}{,} \PY{n+nb}{globals}\PY{o}{=}\PY{n+nb}{globals}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+                  \PY{n}{t120} \PY{o}{+}\PY{o}{=} \PY{n}{timeit}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hybridSort(a120, 30)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{number}\PY{o}{=}\PY{n}{runs}\PY{p}{,} \PY{n+nb}{globals}\PY{o}{=}\PY{n+nb}{globals}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+                  \PY{n}{t140} \PY{o}{+}\PY{o}{=} \PY{n}{timeit}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hybridSort(a140, 35)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{number}\PY{o}{=}\PY{n}{runs}\PY{p}{,} \PY{n+nb}{globals}\PY{o}{=}\PY{n+nb}{globals}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+              
+              
+              \PY{n}{arr20}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{t20}\PY{o}{/}\PY{n}{t}\PY{p}{)}
+              \PY{n}{arr40}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{t40}\PY{o}{/}\PY{n}{t}\PY{p}{)}
+              \PY{n}{arr60}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{t60}\PY{o}{/}\PY{n}{t}\PY{p}{)}
+              \PY{n}{arr80}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{t80}\PY{o}{/}\PY{n}{t}\PY{p}{)}
+              \PY{n}{arr100}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{t100}\PY{o}{/}\PY{n}{t}\PY{p}{)}
+              \PY{n}{arr120}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{t120}\PY{o}{/}\PY{n}{t}\PY{p}{)}
+              \PY{n}{arr140}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{t140}\PY{o}{/}\PY{n}{t}\PY{p}{)}
+          
+          
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{arr20}\PY{p}{,} \PY{n}{file}\PY{o}{=}\PY{n+nb}{open}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{t20.txt}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{a}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{arr40}\PY{p}{,} \PY{n}{file}\PY{o}{=}\PY{n+nb}{open}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{t40.txt}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{a}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{arr60}\PY{p}{,} \PY{n}{file}\PY{o}{=}\PY{n+nb}{open}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{t60.txt}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{a}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{arr80}\PY{p}{,} \PY{n}{file}\PY{o}{=}\PY{n+nb}{open}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{t80.txt}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{a}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{arr100}\PY{p}{,} \PY{n}{file}\PY{o}{=}\PY{n+nb}{open}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{t100.txt}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{a}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{arr120}\PY{p}{,} \PY{n}{file}\PY{o}{=}\PY{n+nb}{open}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{t120.txt}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{a}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{arr140}\PY{p}{,} \PY{n}{file}\PY{o}{=}\PY{n+nb}{open}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{t140.txt}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{a}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \section{Results}\label{results}
+
+    \begin{figure}
+\centering
+\includegraphics{attachment:Screen\%20Shot\%202018-11-03\%20at\%208.28.22\%20PM.png}
+\caption{Screen\%20Shot\%202018-11-03\%20at\%208.28.22\%20PM.png}
+\end{figure}
+
+    This graph denotes running hybridSorts with cutoffs of 20,40,...,140 on
+arrays of size range 0 to 200.
+
+Noticeable in this graph is that HybridSort(k=140) improves drastically
+around \texttt{len(n)=140}, meaning that we're switching too late. This
+drop trend happens all the way to \texttt{Hybrid(k=60)}, so we infer
+from this graph that the optimal switch spot k must be \textless{} 60.
+So we should increase the resolution/decrease the interval size around k
+\textless{} 60.
+
+    \begin{figure}
+\centering
+\includegraphics{attachment:Screen\%20Shot\%202018-11-03\%20at\%209.40.03\%20PM.png}
+\caption{Screen\%20Shot\%202018-11-03\%20at\%209.40.03\%20PM.png}
+\end{figure}
+
+The graph plots running times of hybridSorts with cutoffs of 20,40, and
+60 on arrays of size \texttt{0\ \textless{}\ len(n)\ \textless{}\ 60}.
+
+Notice how k=10 clearly switches to mergesort too early, and k=50 too
+late. So our answer must be around between 10 and 50. i.e. around 30.
+This contradicts the hypothesis. Really strange!
+
+    \begin{figure}
+\centering
+\includegraphics{attachment:Screen\%20Shot\%202018-11-03\%20at\%2010.28.47\%20PM.png}
+\caption{Screen\%20Shot\%202018-11-03\%20at\%2010.28.47\%20PM.png}
+\end{figure}
+
+Here, the three k-values produce indistinguishable results, more or
+less. So I'll stop doing more trials and decide k=30 is roughly ideal.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}281}]:} \PY{k+kn}{from} \PY{n+nn}{timeit} \PY{k}{import} \PY{n}{timeit}
+          \PY{k+kn}{from} \PY{n+nn}{random} \PY{k}{import} \PY{n}{randint}
+          \PY{k+kn}{from} \PY{n+nn}{copy} \PY{k}{import} \PY{n}{deepcopy}
+          
+          \PY{n}{mergesortTimesArr} \PY{o}{=} \PY{p}{[}\PY{p}{]} 
+          \PY{n}{insertTimesArr} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{n}{hybridTimesArr} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{n}{sortedTimesArr} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          
+          \PY{c+c1}{\PYZsh{} time sorts from len(arr) == 1 to len(arr) == 100 }
+          \PY{k}{for} \PY{n}{arrlen} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{250}\PY{p}{)}\PY{p}{:}
+              
+              \PY{n}{mergeTimes}  \PY{o}{=} \PY{l+m+mi}{0}
+              \PY{n}{insertTimes} \PY{o}{=} \PY{l+m+mi}{0}
+              \PY{n}{hybridTimes} \PY{o}{=} \PY{l+m+mi}{0}
+              \PY{n}{sortedTimes} \PY{o}{=} \PY{l+m+mi}{0}
+              \PY{n}{n} \PY{o}{=} \PY{l+m+mi}{15}
+           
+              \PY{c+c1}{\PYZsh{} takes average of ten runs}
+              \PY{k}{for} \PY{n}{\PYZus{}} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+                  \PY{n}{arr1} \PY{o}{=} \PY{p}{[}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{)} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{arrlen}\PY{p}{)}\PY{p}{]}
+                  \PY{n}{arr2} \PY{o}{=} \PY{n}{deepcopy}\PY{p}{(}\PY{n}{arr1}\PY{p}{)}
+                  \PY{n}{arr3} \PY{o}{=} \PY{n}{deepcopy}\PY{p}{(}\PY{n}{arr1}\PY{p}{)}
+                  \PY{n}{arr4} \PY{o}{=} \PY{n}{deepcopy}\PY{p}{(}\PY{n}{arr1}\PY{p}{)}
+                  
+                  \PY{n}{mergeTimes}  \PY{o}{+}\PY{o}{=} \PY{n}{timeit}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mergesort(arr1)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}     \PY{n}{number}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n+nb}{globals}\PY{o}{=}\PY{n+nb}{globals}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+                  \PY{n}{insertTimes} \PY{o}{+}\PY{o}{=} \PY{n}{timeit}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{insertionSort(arr2)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{number}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n+nb}{globals}\PY{o}{=}\PY{n+nb}{globals}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+                  \PY{n}{hybridTimes} \PY{o}{+}\PY{o}{=} \PY{n}{timeit}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hybridSort(arr3, 30)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{number}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n+nb}{globals}\PY{o}{=}\PY{n+nb}{globals}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+                  \PY{n}{sortedTimes} \PY{o}{+}\PY{o}{=} \PY{n}{timeit}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sorted(arr4)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{number}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n+nb}{globals}\PY{o}{=}\PY{n+nb}{globals}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+                  
+              \PY{n}{meanMergeTime} \PY{o}{=}     \PY{n}{mergeTimes}  \PY{o}{/} \PY{n}{n}
+              \PY{n}{meanInsertionTime} \PY{o}{=} \PY{n}{insertTimes} \PY{o}{/} \PY{n}{n}
+              \PY{n}{meanHybridTime} \PY{o}{=} \PY{n}{hybridTimes} \PY{o}{/} \PY{n}{n}
+              \PY{n}{meanSortedTime} \PY{o}{=} \PY{n}{sortedTimes} \PY{o}{/} \PY{n}{n}
+              
+              \PY{n}{mergesortTimesArr}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{meanMergeTime}\PY{p}{)}
+              \PY{n}{insertTimesArr}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{meanInsertionTime}\PY{p}{)}
+              \PY{n}{hybridTimesArr}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{meanHybridTime}\PY{p}{)}
+              \PY{n}{sortedTimesArr}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{meanSortedTime}\PY{p}{)}
+              
+              
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{mergesortTimesArr}\PY{p}{,} \PY{n}{file}\PY{o}{=}\PY{n+nb}{open}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mergeData.txt}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{a}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{insertTimesArr}\PY{p}{,} \PY{n}{file}\PY{o}{=}\PY{n+nb}{open}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{insertData.txt}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{a}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{hybridTimesArr}\PY{p}{,} \PY{n}{file}\PY{o}{=}\PY{n+nb}{open}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{hybridData.txt}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{a}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{sortedTimesArr}\PY{p}{,} \PY{n}{file}\PY{o}{=}\PY{n+nb}{open}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{sortedData.txt}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{a}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{figure}
+\centering
+\includegraphics{attachment:Screen\%20Shot\%202018-11-03\%20at\%2010.16.12\%20PM.png}
+\caption{Screen\%20Shot\%202018-11-03\%20at\%2010.16.12\%20PM.png}
+\end{figure}
+
+    \subparagraph{This graphs HybridSort(k=30) vs InsertionSort vs.
+MergeSort. HybridSort is clearly superior at all instances. It follows
+the slope of insertion sort for n \textless{} 30, and then follows the
+slope of MergeSort albeit merging at one point, and then matches it with
+a positive
+offset.}\label{this-graphs-hybridsortk30-vs-insertionsort-vs.-mergesort.-hybridsort-is-clearly-superior-at-all-instances.-it-follows-the-slope-of-insertion-sort-for-n-30-and-then-follows-the-slope-of-mergesort-albeit-merging-at-one-point-and-then-matches-it-with-a-positive-offset.}
+
+    \subsubsection{Discussion}\label{discussion}
+
+Surprisingly, the optimal switch spot is k=30. This contradicts our
+results from problem 1 and thus contradicts our hypothesis that k=100
+would be the best switch length based on problem 1 data.
+
+Since this is an empirical result, I have no confident way to reconcile
+theory with it. Maybe something is happening at the level of the
+compiler that could explain this? Because Python is an interpreted
+language, and I can't/won't read byte code, I'll never know why this is.
+
+My attempt at an explanation: Maybe InsertionSort + MergeSort is greater
+than the sum of its parts- As in, maybe insertionSort is so efficient at
+sorting partially sorted small arrays, and mergeSort so effective
+dividing lists in half to get them to the small array cutoff where
+insertionSort is efficient, that together is better than either one by
+themselves would suggest. Mergesort(n==100) is mergesort, recursively,
+all the way down the tree. But in HybridSort(k==25,n=100), for example,
+it's really calling mergesort for n=100 then twice for n=50, then four
+times for n=25, and then it takes advantage of insertionsort. Since
+halving by two so quickly gets us to the base case where insertion sort
+can be efficient, simply seeing were just mergesort and insertionsort
+lineplots meet is misleading. So maybe mergesort is so wasteful while
+merging small subpartitions of nearly sorted arrays that it makes the
+overall run time of just mergesort(at n=100) deceptively long.
+
+A challenge in collecting data is that plotting all k values
+simultaneaously was too much clutter on a graph, so a time-consuming
+process of trial was used.
+
+Also, the timing at each array length was a function of how many
+inversions the random array produced needed. So every once in a while,
+random spikes would show up in the graph the muddied the water, so to
+speak. In order to deal with this, I had to increase the number of trial
+runs at each n up to 50 sometimes. But this was too computationally
+expensive. So reading the optimal k value required a lot of zooming into
+graphs.
+
+Since I know that python's built-in sorted functin uses Timsort, which
+is a hybrid sorting algorithm itself (albeit Quicksort + InsertionSort)
+I compared it to our Hybrid Algorithm just for kicks.
+
+    \begin{figure}
+\centering
+\includegraphics{attachment:Screen\%20Shot\%202018-11-03\%20at\%2011.01.46\%20PM.png}
+\caption{Screen\%20Shot\%202018-11-03\%20at\%2011.01.46\%20PM.png}
+\end{figure}
+
+Evidently, even our hybrid algorithm sucks compared to built-in
+\texttt{Sorted} function.
+
+    \subsection{Conclusion}\label{conclusion}
+
+Under the conditions tested, the optimal switch length for a hybrid
+merge-insertion sort is, roughly 30. This contradicts our problem 1
+data.
+
+    \section{Problem 3}\label{problem-3}
+
+\subsection{Binary Search Trees vs Hash
+Tables}\label{binary-search-trees-vs-hash-tables}
+
+    \subsection{Hypothesis}\label{hypothesis}
+
+The Time-Complexity of inserting in a balanced binary search tree is
+\(\log{n}\), while inserting into a hashTable is \(O(1)\). This is what
+is listed in the CPP reference pages for Multiset and Unsorted Multiset.
+However, I imagine a hash table has to double as it grows, so they might
+really mean a hash-set is an amortized \$O(1)? Also, depending on how
+good the built-in hash function for unsorted\_multiset is at preventing
+collisions, maybe performance will linear in the worst case. But I trust
+the coders of the STL to obviously not do that.
+
+So I'll say the hash function will make the inserting into a bst faster
+up until 100 insertions, and then the BST will be faster for all values
+greater than 100.
+
+    Methods: Describe step-by-step the experiments that you conduct.
+
+Provide the source code that you use, and details about which compiler
+you use, how you compile it (e.g., optimization flags), and the range of
+inputs that you feed into your program.
+
+Your methods should accurately reflect how you actually generated your
+data such that, someone reading them can replicate your experiment.
+
+    \subsection{Methods}\label{methods}
+
+I tested multiset::insert vs unsorted\_multiset::insert for inserting 2
+integers, 4, 8, ..., \(2^{23}\)
+
+Those are C++ implementation of Binary Search Trees and Hash-Set
+respectively.
+
+The compilation flags used were :
+\texttt{g++\ -std=c++11\ -o3\ main.cpp\ -o\ a.out}
+
+I used the \texttt{\textless{}chrono\textgreater{}} library to time the
+insertions.
+
+The times were exported to a text file. The text file was then imported
+into mathematica to create the graphs and tables
+
+    \begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{//}
+\CommentTok{//  main.cpp}
+\CommentTok{//  CSE 431, Anjali, Jesse, Andres}
+\CommentTok{//}
+\CommentTok{//}
+
+\PreprocessorTok{#include }\ImportTok{<iostream>}
+\PreprocessorTok{#include }\ImportTok{<set>}
+\PreprocessorTok{#include }\ImportTok{<unordered_set>}
+\PreprocessorTok{#include }\ImportTok{<fstream>}
+\PreprocessorTok{#include }\ImportTok{<iomanip>}
+\PreprocessorTok{#include }\ImportTok{<chrono>}
+\PreprocessorTok{#include }\ImportTok{<math.h>}
+
+\KeywordTok{using} \KeywordTok{namespace}\NormalTok{ std;}
+
+\DataTypeTok{int}\NormalTok{ main(}\DataTypeTok{int}\NormalTok{ argc, }\AttributeTok{const} \DataTypeTok{char}\NormalTok{ * argv[]) \{}
+    
+    
+    \BuiltInTok{std::}\NormalTok{unordered_multiset<}\DataTypeTok{int}\NormalTok{> uset;}
+    \BuiltInTok{std::}\NormalTok{multiset<}\DataTypeTok{int}\NormalTok{> set;}
+
+\NormalTok{    ofstream setFile(}\StringTok{"set.txt"}\NormalTok{);}
+\NormalTok{    ofstream usetFile(}\StringTok{"uset.txt"}\NormalTok{);}
+    
+    \CommentTok{// set precision}
+\NormalTok{    setFile << fixed << showpoint;}
+\NormalTok{    setFile << setprecision(}\DecValTok{8}\NormalTok{);}
+\NormalTok{    cout << fixed << showpoint;}
+\NormalTok{    cout << setprecision(}\DecValTok{8}\NormalTok{);}
+\NormalTok{    usetFile << fixed << showpoint;}
+\NormalTok{    usetFile << setprecision(}\DecValTok{8}\NormalTok{);}
+    
+    \CommentTok{//myfile << "Writing this to a file.\textbackslash{}n";}
+    \KeywordTok{auto}\NormalTok{ start = chrono::steady_clock::now();}
+    \KeywordTok{auto}\NormalTok{ end = chrono::steady_clock::now();}
+    
+    \DataTypeTok{double}\NormalTok{ elapsedTime = }\DataTypeTok{double}\NormalTok{(chrono::duration_cast<chrono::nanoseconds>(end-start).count());}
+    
+    \DataTypeTok{long} \DataTypeTok{long}\NormalTok{ i = }\DecValTok{1}\NormalTok{;}
+    \DataTypeTok{int}\NormalTok{ x = }\DecValTok{0}\NormalTok{;}
+    
+    \DataTypeTok{int}\NormalTok{ exponent = }\DecValTok{20}\NormalTok{;}
+
+    \CommentTok{// Iterate from 1 up to exponent}
+    \ControlFlowTok{while}\NormalTok{ (i <= exponent)\{}
+        
+\NormalTok{        set.clear();}
+\NormalTok{        uset.clear();}
+        
+        \DataTypeTok{double}\NormalTok{ setRunTime = }\DecValTok{0}\NormalTok{;}
+        \DataTypeTok{double}\NormalTok{ usetRunTime = }\DecValTok{0}\NormalTok{;}
+        
+        \CommentTok{// loop 2^i times}
+        \ControlFlowTok{for}\NormalTok{(}\DataTypeTok{long} \DataTypeTok{long}\NormalTok{ j = }\DecValTok{0}\NormalTok{; j < pow(}\DecValTok{2}\NormalTok{, i); j++)\{}
+            
+\NormalTok{            x = rand();}
+            
+\NormalTok{            start = chrono::steady_clock::now();}
+\NormalTok{            set.insert(x);}
+\NormalTok{            end = chrono::steady_clock::now();}
+\NormalTok{            setRunTime += }\DataTypeTok{double}\NormalTok{(chrono::duration_cast<chrono::nanoseconds>(end-start).count());}
+            
+\NormalTok{            start = chrono::steady_clock::now();}
+\NormalTok{            uset.insert(x);}
+\NormalTok{            end = chrono::steady_clock::now();}
+\NormalTok{            usetRunTime += }\DataTypeTok{double}\NormalTok{(chrono::duration_cast<chrono::nanoseconds>(end-start).count());}
+\NormalTok{        \}}
+        
+\NormalTok{        setFile << setRunTime << }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{;}
+\NormalTok{        usetFile << usetRunTime << }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{;}
+        
+\NormalTok{        i += }\DecValTok{1}\NormalTok{;}
+\NormalTok{    \}}
+    
+    
+\NormalTok{    setFile.close();}
+\NormalTok{    usetFile.close();}
+    
+\NormalTok{    cout << }\StringTok{"Success!}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{;}
+    
+    \ControlFlowTok{return} \DecValTok{0}\NormalTok{;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+    Code for Plotting
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{setData = }
+\NormalTok{  ToExpression@}
+\NormalTok{   StringSplit@Import["/Users/andres/Desktop/EECS431/}\FunctionTok{set}\NormalTok{.txt"];}
+\NormalTok{usetData = }
+\NormalTok{  ToExpression@}
+\NormalTok{   StringSplit@Import["/Users/andres/Desktop/EECS431/uset.txt"];}
+\FunctionTok{ListLogLogPlot}\NormalTok{[\{setData, usetData\}, }
+\NormalTok{ PlotLegends -> \{"Tree", "Hash Table"\}, }
+ \FunctionTok{AxesLabel}\NormalTok{ -> \{}\FunctionTok{HoldForm}\NormalTok{["Number of inseertions"], }
+   \FunctionTok{HoldForm}\NormalTok{["nanoseconds"]\}, }
+ \FunctionTok{PlotLabel}\NormalTok{ -> }\FunctionTok{HoldForm}\NormalTok{["Hash }\FunctionTok{Table}\NormalTok{ insertions vs Tree Insertions"], }
+ \FunctionTok{LabelStyle}\NormalTok{ -> \{}\DecValTok{14}\NormalTok{, }\FunctionTok{GrayLevel}\NormalTok{[}\DecValTok{0}\NormalTok{]\}]}
+\end{Highlighting}
+\end{Shaded}
+
+    \subsection{Results}\label{results}
+
+BST was the faster at insertion for \(\leq 2^5\) insertions. Hash Table
+was faster for \(\gt 2^5\) insertions.
+
+    \begin{figure}
+\centering
+\includegraphics{attachment:Screen\%20Shot\%202018-11-04\%20at\%203.17.58\%20PM.png}
+\caption{Screen\%20Shot\%202018-11-04\%20at\%203.17.58\%20PM.png}
+\end{figure}
+
+Log Log Plot of Performance Comparison of \texttt{multiset::insert} vs
+\texttt{unorderered\_multiset::insert}, that is, inserting into a tree
+vs inserting into a hash table. Note that \(10^{10}\) nanoseconds = 10
+seconds, so we reached the three second threshold requirement listed in
+the HW4 spec
+
+    \begin{figure}
+\centering
+\includegraphics{attachment:Screen\%20Shot\%202018-11-04\%20at\%205.06.57\%20PM.png}
+\caption{Screen\%20Shot\%202018-11-04\%20at\%205.06.57\%20PM.png}
+\end{figure}
+
+    \subsection{Discussion}\label{discussion}
+
+What's interesting is that even for \(2^{23}\) insertions, the hash
+table was just 2.5 times faster, and not around 23 times faster that the
+raw big O comparison would suggest.
+
+Another problem was that I wasn't getting any differences in performance
+between the two because I was unknowingly testing for too few n. Only
+when I cranked it up to around 2\^{}\{20\} did the performance advantage
+of hash tables become noticeable. That's part of the reason why i used
+the chronos library. I was thinking the timing library provided in the
+homework specs wasn't precise enough to detect a difference? lol.
+
+    \section{Conclusion}\label{conclusion}
+
+A cpp binary search tree is more efficient at \(2^5\) insertions and
+less. A cpp Hash Table is more efficient at 2\^{}6 insertions and
+greater.
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
