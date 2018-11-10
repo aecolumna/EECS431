@@ -1,4 +1,3 @@
-# Andres Columna
 # 10/8/18
 
 from collections import deque
